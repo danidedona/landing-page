@@ -6,7 +6,7 @@
 -->
 <html>
   <head>
-    <title>Solid State by HTML5 UP</title>
+    <title>Daniela DeDona</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -16,6 +16,11 @@
     <noscript
       ><link rel="stylesheet" href="assets/css/noscript.css"
     /></noscript>
+    <style>
+      #dynamic-text {
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body class="is-preload">
     <!-- Page Wrapper -->
@@ -46,19 +51,20 @@
       <!-- Banner -->
       <section id="banner">
         <div class="inner">
-          <div class="logo"><span class="icon fa-gem"></span></div>
+          <div class="logo"><span class="icon fa-star"></span></div>
           <h2>Daniela DeDona</h2>
           <p>
-            Another free + fully responsive site template by
-            <a href="http://html5up.net">HTML5 UP</a>
+            Just another <span id="dynamic-text"></span>
+            <!-- TODO: if i want to add a link -->
+            <!-- <a href="link">NAME THAT APPEARS/a> -->
           </p>
         </div>
       </section>
 
       <!-- Wrapper -->
       <section id="wrapper">
-        <!-- One -->
-        <section id="one" class="wrapper spotlight style1">
+        <!-- Past Section One -->
+        <!-- <section id="one" class="wrapper spotlight style1">
           <div class="inner">
             <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
             <div class="content">
@@ -73,7 +79,7 @@
               <a href="#" class="special">Learn more</a>
             </div>
           </div>
-        </section>
+        </section> -->
 
         <!-- Two -->
         <section id="two" class="wrapper alt spotlight style2">
@@ -82,11 +88,18 @@
             <div class="content">
               <h2 class="major">Tempus adipiscing</h2>
               <p>
-                Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras
-                turpis ante, nullam sit amet turpis non, sollicitudin posuere
-                urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim
-                dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla
-                cursus.
+                Welcome to my corner of the web! I'm Daniela DeDona, a
+                passionate software engineer with a love for creating innovative
+                solutions. With a background in computer science, I specialize
+                in developing cutting-edge technology and integrating software
+                with hardware. My journey began with coding during high school,
+                and I've since gained experience in various programming
+                languages and technologies. I thrive on tackling complex
+                challenges and am always eager to explore new horizons. When I'm
+                not coding, you might find me experimenting with new tech,
+                reading up on the latest industry trends, or enjoying a good cup
+                of coffee. Thank you for visiting, and I hope you enjoy
+                exploring my work!
               </p>
               <a href="#" class="special">Learn more</a>
             </div>
@@ -238,5 +251,34 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+      // JavaScript to update dynamic text with typing and deleting effect
+      const dynamicText = document.getElementById("dynamic-text");
+      const textArray = ["developer", "designer", "creator"];
+      let textIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      function type() {
+        const currentText = textArray[textIndex];
+        if (deleting) {
+          dynamicText.textContent = currentText.substring(0, charIndex--);
+          if (charIndex < 0) {
+            deleting = false;
+            textIndex = (textIndex + 1) % textArray.length;
+          }
+        } else {
+          dynamicText.textContent = currentText.substring(0, charIndex++);
+          if (charIndex === currentText.length + 1) {
+            deleting = true;
+            setTimeout(type, 1000); // Wait before starting to delete
+            return;
+          }
+        }
+        setTimeout(type, deleting ? 50 : 100); // Adjust speed for typing and deleting
+      }
+
+      setTimeout(type, 1000); // Start typing after 1 second
+    </script>
   </body>
 </html>
